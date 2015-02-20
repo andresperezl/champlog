@@ -1,0 +1,10 @@
+Thu, 19 Feb 2015 21:29:45 -0500
+README.rdoc	Wed, 18 Feb 2015 17:42:57 -0500
+app/controllers/application_controller.rb	Wed, 18 Feb 2015 18:35:36 -0500
+app/controllers/home_controller.rb	Wed, 18 Feb 2015 19:03:08 -0500
+app/controllers/users_controller.rb	Thu, 19 Feb 2015 20:34:18 -0500
+app/helpers/application_helper.rb	Wed, 18 Feb 2015 18:30:06 -0500
+app/helpers/home_helper.rb	Wed, 18 Feb 2015 17:43:57 -0500
+app/helpers/riot_api_helper.rb	Thu, 19 Feb 2015 19:40:35 -0500
+app/helpers/users_helper.rb	Thu, 19 Feb 2015 11:36:49 -0500
+app/models/user.rb	Thu, 19 Feb 2015 20:36:03 -0500

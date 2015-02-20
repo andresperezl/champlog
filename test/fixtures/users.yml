@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  password: MyString
+  summoner_name: MyString
+  summoner_id: 1
+  region: MyString
+  confirmed: false
+  confirmation_key: MyString
+  tester: false
+  admin: false
+
+two:
+  email: MyString
+  password: MyString
+  summoner_name: MyString
+  summoner_id: 1
+  region: MyString
+  confirmed: false
+  confirmation_key: MyString
+  tester: false
+  admin: false
