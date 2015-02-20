@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     respond_to do |format|
-      if @user.save
+      if verify_recaptcha(model: @user, message: "the reCAPTCHA text was not correct") && @user.save
         log_in(@user)
         format.html { redirect_to @user, success: 'User was successfully created.' }
       else

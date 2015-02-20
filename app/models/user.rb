@@ -7,13 +7,13 @@ class User < ActiveRecord::Base
 		summ = User.where("region = ? AND LOWER(summoner_name) = ?",
 		 region, summoner_name.downcase).first
 		unless summ.nil?
-			summ.delete if (summ.updated_at + 1.day) < Time.now && !summ.confirmed
+			summ.delete if (summ.created_at + 1.hour) < Time.now && !summ.confirmed
 		end
 	}
 
 	has_secure_password
 #	validates :email, presence: true, uniqueness: { case_sensitive: false }, email: true, length: { in: 7..254 }
-	validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
+	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 	validates :summoner_name, presence: true, allow_blank: false,
 	uniqueness: { scope: :region, case_sensitive: false,
 	 message: "This summoner name have already been claimmed by another user." }, format: { with: /\A[^,]+\z/ }
