@@ -1,7 +1,24 @@
-%div
-  - if logged_in?
-    = current_user.summoner_name
-    = link_to 'Log out', logout_path, method: :delete
-  - else
-    = link_to 'Sign up', signup_path
-    = link_to 'Log in', login_path
+.fixed
+  %nav.top-bar{ data: { topbar: "" }, role: 'navigation'}
+    %ul.title-area
+      %li.name
+        %h1= link_to "Kha'Zix Journal", root_path
+      %li.toggle-topbar.menu-icon
+        %a
+          %span/
+    %section.top-bar-section
+      %ul.left
+      %ul.right
+        %li.divider
+        - if logged_in?
+          %li.has-dropdown
+            %a= current_user.summoner_name
+            %ul.dropdown
+              %li.divider
+              %li= link_to "Profile", current_user
+              %li.divider
+              %li= link_to 'Log out', logout_path, method: :delete
+        - else
+          %li= link_to 'Sign up', signup_path
+          %li.divider
+          %li= link_to 'Log in', login_path

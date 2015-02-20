@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'httparty'
 gem 'haml'
 gem 'html2haml', group: :development
+gem 'foundation-rails'
 gem 'email_validator', :require => 'email_validator/strict'
 
 # Use ActiveModel has_secure_password
