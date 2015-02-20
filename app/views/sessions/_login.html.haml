@@ -1,0 +1,13 @@
+= form_for :session, url: login_path do |f|
+  = f.label :summoner_name
+  = f.text_field :summoner_name
+  = f.label :region
+  = f.select :region do
+    - shards.each do |shard|
+      = content_tag :option, shard['name'], value: shard['slug']
+  = f.label :password
+  = f.password_field :password
+  = f.label :remember_me
+  = f.check_box :remember_me
+  .action
+    = f.submit 'Log in'

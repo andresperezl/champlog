@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  include ActionView::Helpers::DateHelper
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :verify]
 
   # GET /users
   def index
@@ -8,6 +9,46 @@ class UsersController < ApplicationController
 
   # GET /user/1
   def show
+    if logged_in? && current_user?(@user)
+      unless @user.confirmed?
+        render 'confirmation'
+        return
+      end
+      render :show
+      return
+    end
+    flash[:warning] = "The user doesn't exits yet"
+    redirect_to root_path
+  end
+
+  def verify
+    if @user.confirmed?
+      flash[:info] = "You have already verified your account"
+      redirect_to user_path(@user)
+      return
+    end
+    if logged_in? && current_user?(@user)
+      if Time.now > @user.verify_timeout
+        if @user.verify?
+          @user.confirmed = true
+          @user.save
+          flash[:success] = "You successfully verified your account!"
+          redirect_to user_path(@user)
+        else
+          @user.verify_timeout = Time.now + 10.minutes
+          @user.confirmation_key = User.new_token
+          @user.save
+          flash[:warning] = "We were unable to verify your account, try again in 10 minutes!"
+          redirect_to user_path(@user)
+        end
+      else
+        flash[:warning] = "You still need to wait #{time_ago_in_words(@user.verify_timeout)} before trying again"
+        redirect_to user_path(@user)
+      end
+    else
+      flash[:alert] = "You can NOT verify for another user!"
+      redirect_to user_path(@user)
+    end
   end
 
   # GET /signup
@@ -23,14 +64,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        log_in(@user)
+        format.html { redirect_to @user, success: 'User was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,13 +101,12 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(
-        :email, :password, :password_confirmation,
+      params.require(:user).permit(:password, :password_confirmation,
          :summoner_name, :region)
     end
 end

@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
 	}
 
 	has_secure_password
-	validates :email, presence: true, uniqueness: { case_sensitive: false }, email: true, length: { in: 7..254 }
-	validates :password, presence: true, length: { in: 6..40 }
+#	validates :email, presence: true, uniqueness: { case_sensitive: false }, email: true, length: { in: 7..254 }
+	validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
 	validates :summoner_name, presence: true, allow_blank: false,
 	uniqueness: { scope: :region, case_sensitive: false,
 	 message: "This summoner name have already been claimmed by another user." }, format: { with: /\A[^,]+\z/ }
@@ -21,11 +21,12 @@ class User < ActiveRecord::Base
 	validate :summoner_must_exist_in_riot
 
 	before_create { 
-		self.email = email.downcase
+#		self.email = email.downcase
 		self.summoner_name = @info["name"]
 		self.summoner_id = @info["id"]
 		self.summoner_icon = @info["profileIconId"]
 		self.confirmation_key = User.new_token
+		self.verify_timeout = Time.now
 	}
 
 	def summoner_must_exist_in_riot
@@ -35,7 +36,6 @@ class User < ActiveRecord::Base
 		elsif @info["summonerLevel"] < 30
 			errors.add(:summoner_name, "#{summoner_name} have not reached level 30 yet")
 		end
-			
 	end
 
 	def region_must_exists
@@ -69,6 +69,12 @@ class User < ActiveRecord::Base
   	# Forgets a user.
 	def forget
 	    update_attribute(:remember_digest, nil)
+	end
+
+	#Verify user
+	def verify?
+		pages = mastery_pages(self.region, self.summoner_id)
+		pages.include?(self.confirmation_key)
 	end
 
 end

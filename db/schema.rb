@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220005742) do
+ActiveRecord::Schema.define(version: 20150220055747) do
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
     t.string   "password_digest"
     t.string   "summoner_name"
     t.integer  "summoner_id"
@@ -27,8 +26,7 @@ ActiveRecord::Schema.define(version: 20150220005742) do
     t.datetime "updated_at",       null: false
     t.string   "remember_digest"
     t.integer  "summoner_icon"
+    t.datetime "verify_timeout"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email"
 
 end
