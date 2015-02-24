@@ -7,18 +7,33 @@
       %ul
         - @user.errors.full_messages.each do |message|
           %li= message
-  .card
-    = f.label :summoner_name
-    = f.text_field :summoner_name
-    = f.label :region
-    = f.select :region do
-      - shards.each do |shard|
-        = content_tag :option, shard['name'], value: shard['slug']
-    = f.label :password
-    = f.password_field :password
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-    = recaptcha_tags
-
-  .actions
-    = f.submit 'Register'
+  .row
+    .columns.small-12
+      = f.label :summoner_name do
+        Summoner name
+        = f.text_field :summoner_name
+  .row
+    .columns.small-12
+      = f.label :region do
+        Region
+        = f.select :region do
+          - shards.each do |shard|
+            = content_tag :option, shard['name'], value: shard['slug']
+  .row
+    .columns.small-12
+      = f.label :password do
+        Password
+        = f.password_field :password
+  .row
+    .columns.small-12
+      = f.label :password_confirmation do
+        Confirm password
+        = f.password_field :password_confirmation
+  .row
+    .columns.small-12
+      = f.label 'g-captcha-response' do
+        Are you a bot?
+        .g-recaptcha{ data: { sitekey: "#{ ENV['RECAPTCHA_PUBLIC_KEY'] }"  } }
+  .row{ style: "margin-top: 0.3rem" }
+    .colums.small-12
+      = f.submit 'Register', class: 'button expand'

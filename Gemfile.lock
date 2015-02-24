@@ -131,7 +131,6 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    recaptcha (0.3.6)
     ruby_parser (3.6.4)
       sexp_processor (~> 4.1)
     sass (3.4.12)
@@ -190,7 +189,6 @@ DEPENDENCIES
   pg
   rails (= 4.2.0)
   rails_12factor
-  recaptcha
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

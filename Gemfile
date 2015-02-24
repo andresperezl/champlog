@@ -1,4 +1,4 @@
-ruby '2.1.3'
+ruby '2.2.0'
 
 source 'https://rubygems.org'
 
@@ -52,4 +52,3 @@ group :development, :test do
 end
 
 gem 'rails_12factor', group: :production
-gem "recaptcha", :require => "recaptcha/rails"

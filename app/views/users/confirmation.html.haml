@@ -1,20 +1,27 @@
-.card
-  %p
-    %b You are almost done!
-    %br/
-    You just need to verify that you actually own the League account that your are claimming to do in the registration[
-    %b #{@user.summoner_name} 
-    in 
-    %b #{@user.region.upcase}
-    ]
-    %br/
-    %b It's easy!
-    Just change one of your Mastery Pages name to the code displayed below (is case sensitive, copy as it is) and then click the
-    %b 'Verify'
-    button.
-    %br
-  %h2= @user.confirmation_key
-  %p
-    %b Warning:
-    If you click the 'Verify' button and you have NOT made the change, you will have to wait 10 minutes to try again and the key will be reseted. Also, you have 1 hour of grace period where this summoner account is reserved to verify it. If 1 hours passes, someone else can register this account.
-  = link_to "Verify!", verify_user_path
+.row
+  .columns.small-12
+    %ul.cardholder
+      %li
+        %p.text-center
+          %b You are almost done!
+          %br/
+          You just need to verify that you actually own the League account that your are claimming to do in the registration[
+          %b #{@user.summoner_name} 
+          in 
+          %b #{@user.region.upcase}
+          ]
+          %br/
+          %b It's easy!
+          %br/
+          Just change one of your Mastery Pages name to the code displayed below (is case sensitive, copy as it is) and then click the
+          %b 'Verify'
+          button.
+          %br
+        %h2.text-center= @user.confirmation_key
+        .alert-box.warning
+          %p.text-center
+            %b Warning:
+            %br/
+            If you click the 'Verify' button and you have NOT made the change, you will have to wait 10 minutes to try again and the key will be resetted to a new one. Also, you have 1 hour of grace period where this summoner account is reserved to verify it. If 1 hours passes, someone else can register this account.
+        .row.text-center
+          = link_to "Verify!", verify_user_path, class: 'button success'

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include ActionView::Helpers::DateHelper
+  include RecaptchaHelper
   before_action :set_user, only: [:show, :edit, :update, :destroy, :verify]
 
   # GET /users
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     respond_to do |format|
-      if verify_recaptcha(model: @user, message: "the reCAPTCHA text was not correct") && @user.save
+      if verify_recaptcha(params['g-recaptcha-response'], request.remote_ip, { record: @user }) && @user.save
         log_in(@user)
         format.html { redirect_to @user, success: 'User was successfully created.' }
       else
@@ -107,6 +108,7 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:password, :password_confirmation,
-         :summoner_name, :region)
+         :summoner_name, :region, 'g-recaptcha-reponse')
     end
+
 end
