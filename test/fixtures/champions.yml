@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  riot_id: MyString
+  riot_key: 1
+  title: MyString
+
+two:
+  riot_id: MyString
+  riot_key: 1
+  title: MyString

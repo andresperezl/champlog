@@ -5,19 +5,32 @@ module RiotApiHelper
 	API_KEY_PARAM = "&api_key=#{RIOT_API_KEY}"
 	DDRAGON_BASE = "https://ddragon.leagueoflegends.com"
 	DDRAGON_API = "#{DDRAGON_BASE}/api"
-	DDRAGON_VERSION = JSON.parse(HTTParty.get("#{DDRAGON_API}/versions.json").body)[0]
-
-	DDRAGON_CDN = "#{DDRAGON_BASE}/cdn/#{DDRAGON_VERSION}"
-
-	DDRAGON_DATA = "#{DDRAGON_CDN}/data/en_US"
-	DDRAGON_CHAMPION = "#{DDRAGON_DATA}/champion.json"
-
-	DDRAGON_IMG = "#{DDRAGON_CDN}/img"
-	DDRAGON_SPRITE = "#{DDRAGON_IMG}/sprite"
-
 	API_BASE = "api.pvp.net/api/lol"
-
 	SUMMONER_VERSION = "1.4"
+
+	def ddragon_version 
+		Patch.order(name: :desc).first.name
+	end
+
+	def ddragon_cdn
+		"#{DDRAGON_BASE}/cdn/#{ddragon_version}"
+	end
+
+	def ddragon_data
+		"#{ddragon_cdn}/data/en_US"
+	end
+
+	def ddragon_champion
+		"#{ddragon_data}/champion.json"
+	end
+
+	def ddragon_img
+		"#{ddragon_cdn}/img"
+	end
+
+	def ddragon_sprite
+		"#{ddragon_img}"
+	end
 
 	def summoner_base(region)
 		"https://#{region}.#{API_BASE}/#{region}/v#{SUMMONER_VERSION}/summoner"
