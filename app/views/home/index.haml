@@ -1,7 +1,0 @@
-%div
-  %ul
-    - @champions.each do |champ|
-      - info = champ[1]
-      - image = info["image"]
-      %li
-        =content_tag :div, nil, class: "champ-icon #{ File.basename(image['sprite'], '.png') }", style: "background-position: -#{image['x']}px -#{image['y']}px"

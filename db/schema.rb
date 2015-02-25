@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224223200) do
+ActiveRecord::Schema.define(version: 20150225134017) do
 
   create_table "bug_types", force: :cascade do |t|
     t.string   "name"
@@ -19,26 +19,18 @@ ActiveRecord::Schema.define(version: 20150224223200) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "bugs", force: :cascade do |t|
-    t.string   "type"
-    t.string   "status"
-    t.string   "patch"
-    t.integer  "submitter_id"
-    t.integer  "auditor_id"
-    t.date     "solved_on"
-    t.string   "short_description"
-    t.string   "long_description"
-    t.string   "expected_result"
-    t.string   "experienced_result"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
   create_table "champions", force: :cascade do |t|
     t.string   "riot_id"
     t.integer  "riot_key"
     t.string   "name"
     t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "maps", force: :cascade do |t|
+    t.string   "name"
+    t.string   "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,7 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400italic,100,300,100italic,300italic,400);
 @import "foundation_and_overrides";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
  $soft-shadow : #666666;
+
+
 
 .champ-icon{
 	background-repeat: no-repeat;
@@ -12,23 +16,23 @@
 }
 
 .champion0{
-	background-image: url('<%= "#{DDRAGON_SPRITE}/champion0.png" %>');
+	background-image: url('<%= "#{ddragon_sprite}/champion0.png" %>');
 }
 .champion1{
-	background-image: url('<%= "#{DDRAGON_SPRITE}/champion1.png" %>');
+	background-image: url('<%= "#{ddragon_sprite}/champion1.png" %>');
 }
 .champion2{
-	background-image: url('<%= "#{DDRAGON_SPRITE}/champion2.png" %>');
+	background-image: url('<%= "#{ddragon_sprite}/champion2.png" %>');
 }
 .champion3{
-	background-image: url('<%= "#{DDRAGON_SPRITE}/champion3.png" %>');
+	background-image: url('<%= "#{ddragon_sprite}/champion3.png" %>');
 }
 .champion4{
-	background-image: url('<%= "#{DDRAGON_SPRITE}/champion4.png" %>');
+	background-image: url('<%= "#{ddragon_sprite}/champion4.png" %>');
 }
 
 .top-bar{
-	box-shadow: 0 1px 3px $soft-shadow;
+	box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
 
 ul.cardholder{
@@ -58,4 +62,119 @@ ul.cardholder{
 .center{
 	width: auto;
 	margin: 0 auto;
+}
+
+#side-menu{
+	width: rem-calc(232);
+	bottom: 0;
+	left: 0;
+	overflow: visible;
+	position: fixed;
+	width: 232px;
+	top: 56px;
+	z-index: 4;
+	-webkit-transform: translateX(-242px);
+	transform: translateX(-242px);
+	-webkit-transition: -webkit-transform .15s ease-in-out;
+	transition: transform .15s ease-in-out;
+	will-change: top,left;
+}
+#side-menu.open{
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+}
+#open-menu-button{
+	transition: transform 150ms cubic-bezier(.4,0,1,1);
+}
+.side-menu-content{
+	background: #fff;
+	bottom: 0;
+	box-shadow: 0 0 4px rgba(0,0,0,.14),2px 4px 8px rgba(0,0,0,.28);
+	color: #757575;
+	line-height: 40px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+	white-space: nowrap;
+	width: 232px;
+	top: 0;
+}
+
+.report-bug{
+	font-weight: bold;
+	padding-top: 8px;
+	height: 56px;
+	display: flex;
+	flex-direction: row-reverse;
+	white-space: nowrap;
+}
+
+.report-wrapper{
+	bottom: 0;
+	padding: 23px;
+	padding-left: 15px;
+	pointer-events: none;
+	position: fixed;
+	right: 0;
+	white-space: nowrap;
+	z-index: 21;
+	will-change: top,left;
+}
+
+.report-btn{
+	background-color: #2C8CDB;
+	height: 56px;
+	position: relative;
+	width: 56px;
+	border: none;
+	border-radius: 50%;
+	box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+	box-sizing: content-box;
+	cursor: pointer;
+	outline: none;
+	padding: 0;
+	pointer-events: auto;
+	position: relative;
+	-webkit-user-drag: none;
+	-webkit-transform: scale(1) rotate(360deg);
+	transform: scale(1) rotate(360deg);
+	-webkit-transition: -webkit-transform 150ms cubic-bezier(.4,0,1,1);
+	transition: transform 150ms cubic-bezier(.4,0,1,1);
+}
+
+.report-btn:hover{
+	transform: scaleX(2) translateX(-28px);
+	border-radius: 5%;
+	.report-pre{
+		opacity: 0;
+	}
+	.report-post{
+		opacity: 1;
+		transform: scaleX(0.5);
+	}
+
+}
+
+.report-btn-content{
+	background-size: 24px;
+	display: block;
+	height: 24px;
+	margin: auto;
+	-webkit-user-drag: none;
+}
+
+.report-pre{
+	left: 0;
+	margin-left: 16px;
+	margin-top: 16px;
+	position: absolute;
+	top: 0;
+	-webkit-transition: all .2s cubic-bezier(.4,0,.2,1);
+	transition: all .2s cubic-bezier(.4,0,.2,1);
+	width: 24px;
+}
+
+.report-post{
+	opacity: 0;
+	margin-left: -6px;
 }

@@ -1,0 +1,17 @@
+= form_for(@bug) do |f|
+  - if @bug.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@bug.errors.count, "error")
+        prohibited this bug from being saved:
+      %ul
+        - @bug.errors.full_messages.each do |message|
+          %li= message
+  %ul.cardholder
+    %li
+      = f.label(:bug_type)
+      - BugType.each do |bt|
+        = f.label "bug_type_#{bt.id}", bt.name
+        = radio_button :bug_type, bt.id
+  .actions
+    = f.submit

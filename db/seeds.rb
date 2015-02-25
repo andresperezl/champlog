@@ -7,3 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 bug_types = BugType.create([{ id: 1, name: "In-Game"}, { id: 2, name: "Client" }, {  id: 3, name: "Launcher" }])
+maps = Map.create({ id: 1, name: "Summoner's Rift", note: "5v5" }, { id: 2, name: "Twisted Treeline", note: "3v3" },
+	 { id: 3, name: "The Crystal Scar", note: "Dominion" }, { id: 4, name: "Howling Abyss", note: "ARAM" })

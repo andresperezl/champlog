@@ -15,4 +15,10 @@
 //= require foundation
 //= require turbolinks
 
-$(function(){ $(document).foundation(); });
+$(function(){ 
+	$(document).foundation();
+	$("#open-menu-button").click(function(){
+		$(this).toggleClass("fa-rotate-90");
+		$("#side-menu").toggleClass("open");
+	})
+});

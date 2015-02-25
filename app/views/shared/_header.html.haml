@@ -1,8 +1,19 @@
+#side-menu
+  .side-menu-content
+    %ul
+      %li
+        %h5 Bugs
+        %ul
+          - BugType.all.each do |type|
+            %li
+              %a= type.name
 .fixed
   %nav.top-bar{ data: { topbar: "" }, role: 'navigation'}
     %ul.title-area
-      %li.name
-        %h1= link_to "Kha'Zix Journal", root_path
+      %li.name#open-menu-button
+        %h1
+          %a
+            %i.fa.fa-bars
       %li.toggle-topbar.menu-icon
         %a
           %span/

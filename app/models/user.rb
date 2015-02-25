@@ -77,4 +77,8 @@ class User < ActiveRecord::Base
 		pages.include?(self.confirmation_key)
 	end
 
+	def verified?
+		confirmed
+	end
+
 end

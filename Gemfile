@@ -29,6 +29,7 @@ gem 'httparty'
 gem 'haml'
 gem 'html2haml', group: :development
 gem 'foundation-rails'
+gem 'font-awesome-sass'
 gem 'email_validator', :require => 'email_validator/strict'
 
 # Use ActiveModel has_secure_password

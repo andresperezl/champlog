@@ -1,3 +1,12 @@
+- if verified?
+  .report-wrapper
+    .report-bug
+      = link_to bug_report_path, class: :button, role: :button do
+        .report-btn-content.report-pre
+          %i.fa.fa-bug.fa-lg
+        .report-btn-content.report-post
+          Report Bug
+
 .row
   .columns.small-12
     .panel.text-center#footer
