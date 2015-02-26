@@ -2,20 +2,26 @@
   .side-menu-content
     %ul
       - if logged_in?
-        %li.section
-          %h5= current_user.summoner_name
-          %ul
+        %li.profile-icon
+          .row
+            = image_tag ddragon_profileicon(current_user.summoner_icon), alt: "profile-icon"
+          .row
+            = current_user.summoner_name
+        %li
+          %ul.breadcrumbs
+            %li= link_to "My Bugs", "#"
             %li= link_to "Profile", current_user
             %li= link_to 'Log out', logout_path, method: :delete
       - else
-        %li= link_to 'Sign up', signup_path
-        %li= link_to 'Log in', login_path
+        %ul.breadcrumbs
+          %li= link_to 'Sign up', signup_path
+          %li= link_to 'Log in', login_path
       %li.divider
       %li.section
         %h5 Bugs
         %ul
           - BugType.all.each do |type|
-            %li
+            %li.section-item
               %a= type.name
 .fixed
   %nav.topnav{ role: 'navigation' }

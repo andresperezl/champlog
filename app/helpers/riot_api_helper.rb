@@ -29,7 +29,11 @@ module RiotApiHelper
 	end
 
 	def ddragon_sprite
-		"#{ddragon_img}"
+		"#{ddragon_img}/sprite"
+	end
+
+	def ddragon_profileicon(iconid)
+		"#{ddragon_img}/profileicon/#{iconid}.png"
 	end
 
 	def summoner_base(region)

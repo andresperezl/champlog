@@ -159,6 +159,20 @@ ul.cardholder{
 	ul{
 		margin: 0;
 		list-style: none;
+		li.profile-icon{
+			background: linear-gradient(to bottom, #2f009e 0%,#542fa3 50%,#49259e 51%,#5b3ba0 100%); /* W3C */
+			padding: rem-calc(5);
+			color: white;
+			font-size: 1.125rem;
+			font-weight: 200;
+			text-align: center;
+			img{
+				border-radius: rem-calc(32);
+				margin: 0 auto;
+				width: rem-calc(64);
+				height: rem-calc(64);
+			}
+		}
 		li.section > h5{
 			text-align: center;
 			font-weight: 200;
@@ -173,12 +187,12 @@ ul.cardholder{
 				color: #777;
 				font-weight: bolder;
 			}
-			li{
+			li.section-item{
 				cursor: pointer;
 				padding-left: rem-calc(15);
 				transition: background-color .15s ease-in-out;
 			}
-			li:hover{
+			li.section-item:hover{
 				color: #555 !important;
 				background-color: #DDD;
 			}
@@ -209,6 +223,7 @@ ul.cardholder{
 
 .report-btn{
 	background-color: #2C8CDB;
+	float: right;
 	height: rem-calc(56);
 	position: relative;
 	width: rem-calc(56);
@@ -221,14 +236,12 @@ ul.cardholder{
 	padding: 0;
 	pointer-events: auto;
 	-webkit-user-drag: none;
-	-webkit-transform: scale(1) rotate(360deg);
-	transform: scale(1) rotate(360deg);
-	-webkit-transition: -webkit-transform 150ms cubic-bezier(.4,0,1,1);
-	transition: transform 150ms cubic-bezier(.4,0,1,1);
+	-webkit-transition: -webkit-all 150ms cubic-bezier(.4,0,1,1);
+	transition: all 150ms cubic-bezier(.4,0,1,1);
 }
 
 .report-btn:hover{
-	transform: translateX(rem-calc(-28));
+	
 	width: auto;
 	border-radius: 5%;
 	.report-pre{
