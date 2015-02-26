@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400italic,100,300,100italic,300italic,400);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400italic,100,300,100italic,300italic,400,500,700);
 @import "foundation_and_overrides";
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -6,6 +6,9 @@
  $soft-shadow : #666666;
 
 
+body{
+	padding-top: rem-calc(72);
+}
 
 .champ-icon{
 	background-repeat: no-repeat;
@@ -31,8 +34,31 @@
 	background-image: url('<%= "#{ddragon_sprite}/champion4.png" %>');
 }
 
-.top-bar{
+.topnav{
+	background-color: white;
 	box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+	.title-area{
+		.side-menu-btn{
+			padding: rem-calc(10);
+			border-radius: 50%;
+			text-align: center;
+			transition: color .2s ease-in-out;
+			font-size: 1.25rem;
+			cursor: pointer;
+			margin: auto;
+			i{
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+		.side-menu-btn:hover{
+			color: $monsoon;
+		}
+	}
+	li{
+		display: inline-block;
+		vertical-align: middle;
+	}
 }
 
 ul.cardholder{
@@ -41,7 +67,37 @@ ul.cardholder{
 	padding: 0.3rem 0.4rem 0 0.4rem;
 	width: 100%;
 
+	[class*="block-grid-"] {
+		margin: 0;
+		li{
+			padding: 0;
+		}
+		input[type=radio]{
+			display: none;
+			+ label {
+				display: block;
+				font-size: 2rem;
+				font-weight: 200;
+				margin: 0;
+				width: 100%;
+				text-align: center;
+				vertical-align: center;
+				transition: all 300ms cubic-bezier(.4,0,1,1);
+			}
+		}
+		input[type=radio]:checked + label{
+			background-color: $khazix;
+			font-weight: bold;
+			color: white;
+		}
+	}
+
 	li{
+		.card-title{
+			border-bottom: 1px solid #DDD;
+			font-weight: 100;
+			padding-left: rem-calc(20);
+		}
 		@extend .round;
 		box-shadow: 
 			0px 3px 2px #C0C0C0,
@@ -70,11 +126,11 @@ ul.cardholder{
 	left: 0;
 	overflow: visible;
 	position: fixed;
-	width: 232px;
-	top: 56px;
+	width: rem-calc(232);
+	top: rem-calc(72);
 	z-index: 4;
-	-webkit-transform: translateX(-242px);
-	transform: translateX(-242px);
+	-webkit-transform: translateX(rem-calc(-242));
+	transform: translateX(rem-calc(-242));
 	-webkit-transition: -webkit-transform .15s ease-in-out;
 	transition: transform .15s ease-in-out;
 	will-change: top,left;
@@ -84,7 +140,9 @@ ul.cardholder{
 	transform: translateX(0);
 }
 #open-menu-button{
-	transition: transform 150ms cubic-bezier(.4,0,1,1);
+	i{
+		transition: transform 150ms cubic-bezier(.4,0,1,1);
+	}
 }
 .side-menu-content{
 	background: #fff;
@@ -96,8 +154,36 @@ ul.cardholder{
 	overflow-y: auto;
 	position: absolute;
 	white-space: nowrap;
-	width: 232px;
+	width: rem-calc(232);
 	top: 0;
+	ul{
+		margin: 0;
+		list-style: none;
+		li.section > h5{
+			text-align: center;
+			font-weight: 200;
+			margin-bottom: rem-calc(3.2);
+			cursor: default;
+
+		}
+		li.section{
+			margin-top: rem-calc(5);
+			border-bottom: 1px solid #DDD;
+			a{
+				color: #777;
+				font-weight: bolder;
+			}
+			li{
+				cursor: pointer;
+				padding-left: rem-calc(15);
+				transition: background-color .15s ease-in-out;
+			}
+			li:hover{
+				color: #555 !important;
+				background-color: #DDD;
+			}
+		}
+	}
 }
 
 .report-bug{
@@ -123,9 +209,9 @@ ul.cardholder{
 
 .report-btn{
 	background-color: #2C8CDB;
-	height: 56px;
+	height: rem-calc(56);
 	position: relative;
-	width: 56px;
+	width: rem-calc(56);
 	border: none;
 	border-radius: 50%;
 	box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
@@ -134,7 +220,6 @@ ul.cardholder{
 	outline: none;
 	padding: 0;
 	pointer-events: auto;
-	position: relative;
 	-webkit-user-drag: none;
 	-webkit-transform: scale(1) rotate(360deg);
 	transform: scale(1) rotate(360deg);
@@ -143,38 +228,42 @@ ul.cardholder{
 }
 
 .report-btn:hover{
-	transform: scaleX(2) translateX(-28px);
+	transform: translateX(rem-calc(-28));
+	width: auto;
 	border-radius: 5%;
 	.report-pre{
 		opacity: 0;
 	}
 	.report-post{
 		opacity: 1;
-		transform: scaleX(0.5);
 	}
+	-webkit-transition: all .2s cubic-bezier(.4,0,.2,1);
+	transition: all .2s cubic-bezier(.4,0,.2,1);
 
 }
 
 .report-btn-content{
-	background-size: 24px;
+	background-size: rem-calc(24);
 	display: block;
-	height: 24px;
+	height: rem-calc(24);
 	margin: auto;
 	-webkit-user-drag: none;
 }
 
 .report-pre{
 	left: 0;
-	margin-left: 16px;
-	margin-top: 16px;
+	margin-left: rem-calc(16);
+	margin-top: rem-calc(16);
 	position: absolute;
 	top: 0;
 	-webkit-transition: all .2s cubic-bezier(.4,0,.2,1);
 	transition: all .2s cubic-bezier(.4,0,.2,1);
-	width: 24px;
+	width: rem-calc(24);
 }
 
 .report-post{
 	opacity: 0;
-	margin-left: -6px;
+	font-size: rem-calc(16);
+	margin: rem-calc(16);
+
 }

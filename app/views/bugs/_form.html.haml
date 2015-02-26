@@ -9,9 +9,11 @@
           %li= message
   %ul.cardholder
     %li
-      = f.label(:bug_type)
-      - BugType.each do |bt|
-        = f.label "bug_type_#{bt.id}", bt.name
-        = radio_button :bug_type, bt.id
+      %h4.card-title Bug type
+      %ul.small-block-grid-1.medium-block-grid-3
+        - BugType.all.each do |bt|
+          %li
+            = f.radio_button :bug_type, bt.id
+            = f.label "bug_type_#{bt.id}", bt.name
   .actions
     = f.submit

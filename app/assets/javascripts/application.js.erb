@@ -17,8 +17,15 @@
 
 $(function(){ 
 	$(document).foundation();
+	$("#side-menu").css("top", function(){
+		return $(".topnav").height() + 2;
+	});
 	$("#open-menu-button").click(function(){
-		$(this).toggleClass("fa-rotate-90");
+		$(this).children("i").toggleClass("fa-rotate-90");
 		$("#side-menu").toggleClass("open");
+	});
+	$(".content").click(function(){
+		$("#side-menu").removeClass("open");
+		$("#open-menu-button>i").removeClass("fa-rotate-90");
 	})
 });

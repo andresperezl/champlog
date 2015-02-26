@@ -1,35 +1,28 @@
 #side-menu
   .side-menu-content
     %ul
-      %li
+      - if logged_in?
+        %li.section
+          %h5= current_user.summoner_name
+          %ul
+            %li= link_to "Profile", current_user
+            %li= link_to 'Log out', logout_path, method: :delete
+      - else
+        %li= link_to 'Sign up', signup_path
+        %li= link_to 'Log in', login_path
+      %li.divider
+      %li.section
         %h5 Bugs
         %ul
           - BugType.all.each do |type|
             %li
               %a= type.name
 .fixed
-  %nav.top-bar{ data: { topbar: "" }, role: 'navigation'}
+  %nav.topnav{ role: 'navigation' }
     %ul.title-area
-      %li.name#open-menu-button
+      %li.side-menu-btn#open-menu-button
+        %i.fa.fa-bars
+      %li.name
         %h1
-          %a
-            %i.fa.fa-bars
-      %li.toggle-topbar.menu-icon
-        %a
-          %span/
-    %section.top-bar-section
-      %ul.left
-      %ul.right
-        %li.divider
-        - if logged_in?
-          %li.has-dropdown
-            %a= current_user.summoner_name
-            %ul.dropdown
-              %li.divider
-              %li= link_to "Profile", current_user
-              %li.divider
-              %li= link_to 'Log out', logout_path, method: :delete
-        - else
-          %li= link_to 'Sign up', signup_path
-          %li.divider
-          %li= link_to 'Log in', login_path
+          = link_to root_path do
+            Kha'Zix Journal
